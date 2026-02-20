@@ -1,5 +1,7 @@
 import express from 'express';
-import *as dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
+import { growdevers} from './dados.js';
+
 dotenv.config();
 
 const app = express();
@@ -7,23 +9,42 @@ app.use(express.json());
 
 // Criar nossa rotas
 
+// GET /growdevers - Listar growdevers
+
+app.get("/growdevers", (req, res) => {
+    res.status(200);
+    res.send({
+        ok:true,
+        mensagem: "Growdevers listados com sucesso",
+        dados: growdevers
+    });
+});
+
+const porta = process.env.PORT;
+app.listen(porta, () => {
+    console.log("O servidor está funcionando!!!! " + porta);
+});
+
+
+
+
 /*
 // GET http://localhost:3000/teste
 app.get("/teste", (req, res) => {
     console.log("Hello");
 
-    res.send("Hello response");
+    res.send("Hello responsefsfsf");
     
 });
-*/
+
 
 app.get("/hello",(req, res) => {
-    res.send("Exercício Feito")
+    res.send("Exercício Feito!!!!$$$")
 });
 
 app.get("/about", (req, res) => {
     res.send({
-        nome: "William Silva",
+        nome: "William Silva ",
         email:"silva@gmail.com",
         resumo: "Mentor",
         idade: 35,
@@ -31,9 +52,5 @@ app.get("/about", (req, res) => {
 
     })
 });
-
-const porta = process.env.PORT;
-app.listen(porta, () => {
-    console.log("O servidor está funcionando"+ porta);
-});
+*/
 
